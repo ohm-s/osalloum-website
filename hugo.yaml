@@ -1,0 +1,46 @@
+baseURL: https://blog.306.dev
+languageCode: en-us
+title: 306.dev
+theme: ["hugo-PaperMod"]
+
+outputs:
+  home:
+    - HTML
+
+params:
+  env: production 
+  description: "306.dev blog"
+  author: Omar
+  keywords: [Blog, AWS, Javascript, Java, Python, Data Engineering, Cloud Computing, Serverless]
+  defaultTheme: dark
+  ShowShareButtons: true
+  ShareButtons: ["twitter", "linkedin", "ycombinator"]
+  # disableSpecial1stPost: true
+  displayFullLangName: false
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowWordCount: true
+  ShowReadingTime: true
+  ShowCodeCopyButtons: true
+  ShowRssButtonInSectionTermList: false
+  ShowAllPagesInArchive: true
+  ShowPageNums: true
+  ShowToc: true
+
+  profileMode:
+    enabled: false
+
+  editPost:
+    URL: "https://github.com/ohm-s/306-dev-blog/content"
+    Text: "Suggest Changes" # edit text
+    appendFilePath: true # to append file path to Edit link
+
+
+  homeInfoParams:
+    
+    Content: >
+      - Hello folks, I will be sharing insights into cloud computing on AWS, data engineering and other random musings.
+      
+      - You can checkout the source code for this blog [here](https://github.com/ohm-s/306-dev-blog). It is built using the wonderful [Hugo](https://gohugo.io/) static site generator and the [PaperMod theme](https://github.com/adityatelange/hugo-PaperMod.git)
+      
+      - Please feel free to provide feedback or ask questions on the github issues page.

@@ -1,0 +1,17 @@
+@media screen and (min-width: 1300px) {
+    .toc {
+        position: fixed;
+        top: 118px;
+        right: 15px;
+        width: 280px;
+        z-index: 1;
+        max-height: calc(100% - 150px);
+        overflow: auto;
+    }
+    .toc::-webkit-scrollbar-thumb {
+        border: 5px solid var(--code-bg);
+    }
+    .toc li a.active::after {
+        content: " ☝️"
+    }        
+}
