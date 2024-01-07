@@ -1,0 +1,22 @@
+{{ $file := .Get 0 }}
+{{ $fileParts := split $file "/blob/" }}
+
+{{ $rawFile := printf "%s/%s" (replace (index $fileParts 0) "https://github.com" "https://raw.githubusercontent.com") (index $fileParts 1)  }}
+{{ with resources.GetRemote $rawFile }}
+  {{ with .Err }}
+    {{ errorf "%s" . }}
+  {{ else }}
+    {{ $lang := path.Ext $file | strings.TrimPrefix "." }}
+    {{ if (eq $lang "") }}
+      {{ $filename := path.BaseName $file }}
+      {{ if (eq $filename "Dockerfile") }}
+        {{ $lang = "docker" }}
+      {{ end }}
+    {{ end }}    
+    {{ highlight .Content $lang }}
+    {{ partial "anchor_ghcode" (dict "url" $file) }}
+  {{ end }}
+{{ else }}
+  {{ errorf $rawFile}}
+  {{ errorf "Unable to get remote resource." }}
+{{ end }}

@@ -1,0 +1,362 @@
+/* Light mode theming */
+:root,
+:root[color-theme="light"] {
+    --accent-color: #e9ecef;
+    --accent-color-lite: #f8f9fa;
+    --link-color: #518169;
+    --link-color-visited: #c54e8a;
+    --button-background: #62cb97;
+    --button-border-color: #4ec58a;    
+}
+@media (prefers-color-scheme: light) {
+    :root {
+        --accent-color: #e9ecef;
+        --accent-color-lite: #f8f9fa;
+        --link-color: #518169;
+        --link-color-visited: #c54e8a;
+        --button-background: #62cb97;
+        --button-border-color: #4ec58a;
+    }
+}
+
+/* Dark mode theming */
+:root[color-theme="dark"] {
+    --accent-color: #2b3035;
+    --accent-color-lite: #2f353a;
+    --link-color: #7ac29e;
+    --link-color-visited: #c27a9e;
+    --button-background: #62cb97;
+    --button-border-color: #4ec58a;
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --accent-color: #2b3035;
+        --accent-color-lite: #2f353a;
+        --link-color: #7ac29e;
+        --link-color-visited: #c27a9e;
+        --button-background: #62cb97;
+        --button-border-color: #4ec58a;
+    }
+}
+
+.ghcode-link {
+    float:right;
+}
+  
+.gdoc-tabs [type="radio"] {
+    box-sizing: border-box; /* 1 */
+    padding: 0; /* 2 */
+    opacity: 0;
+}
+
+.gdoc-expand {
+	margin: 1rem 0;
+	border: 1px solid var(--accent-color);
+	border-radius: 0.15rem;
+	overflow: hidden;
+}
+
+.gdoc-expand__head {
+	background: var(--accent-color-lite);
+	padding: 0.5rem 1rem;
+	cursor: pointer;
+}
+
+.gdoc-expand__content {
+	display: none;
+	padding: 0 1rem;
+}
+
+.gdoc-expand__control:checked + .gdoc-expand__content {
+	display: block;
+}
+
+.gdoc-expand .gdoc-page__anchor {
+	display: none;
+}
+
+.gdoc-tabs {
+	margin: 1rem 0;
+	border: 1px solid var(--accent-color);
+	border-radius: 0.15rem;
+	overflow: hidden;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.gdoc-tabs__label {
+	display: inline-block;
+	padding: 0.5rem 1rem;
+	border-bottom: 1px transparent;
+	cursor: pointer;
+}
+
+.gdoc-tabs__content {
+	order: 999;
+	width: 100%;
+	border-top: 1px solid var(--accent-color-lite);
+	padding: 0 1rem;
+	display: none;
+}
+
+.gdoc-tabs__control:checked + .gdoc-tabs__label {
+	border-bottom: 1.5px solid var(--link-color);
+}
+
+.gdoc-tabs__control:checked + .gdoc-tabs__label + .gdoc-tabs__content {
+	display: block;
+}
+
+.gdoc-tabs .gdoc-page__anchor {
+	display: none;
+}
+
+.gdoc-columns {
+	margin: 1rem 0;
+}
+
+ 
+
+.gdoc-columns__content {
+	flex: 1 1;
+	min-width: 13.2rem;
+	padding: 0;
+}
+
+.gdoc-columns .gdoc-page__anchor {
+	display: none;
+}
+
+.gdoc-button {
+	margin: 1rem 0;
+	display: inline-block;
+	background: var(--accent-color-lite);
+	border: 1px solid var(--accent-color);
+	border-radius: 0.15rem;
+	cursor: pointer;
+}
+
+.gdoc-button__link {
+	display: inline-block;
+	color: inherit !important;
+	text-decoration: none !important;
+}
+
+.gdoc-button:hover {
+	background: var(--button-background);
+	border-color: var(--button-border-color);
+	color: #f8f9fa;
+}
+
+.gdoc-button--regular {
+	font-size: 16px;
+}
+
+.gdoc-button--regular .gdoc-button__link {
+	padding: 0.25rem 0.5rem;
+}
+
+.gdoc-button--large {
+	font-size: 1.25rem;
+}
+
+.gdoc-button--large .gdoc-button__link {
+	padding: 0.5rem 1rem;
+}
+
+.gdoc-hint.info {
+	border-left-color: #0091ea;
+	background-color: #f3f9fd;
+	color: #343a40;
+	padding: 0;
+}
+
+.gdoc-hint.note {
+	border-left-color: #0091ea;
+	background-color: #f3f9fd;
+	color: #343a40;
+	padding: 0;
+}
+
+.gdoc-hint.ok {
+	border-left-color: #00c853;
+	background-color: #f2fdf6;
+	color: #343a40;
+	padding: 0;
+}
+
+.gdoc-hint.tip {
+	border-left-color: #00c853;
+	background-color: #f2fdf6;
+	color: #343a40;
+	padding: 0;
+}
+
+.gdoc-hint.important {
+	border-left-color: #ffab00;
+	background-color: #fdfaf4;
+	color: #343a40;
+	padding: 0;
+}
+
+.gdoc-hint.caution {
+	border-left-color: #7300d3;
+	background-color: #f8f2fd;
+	color: #343a40;
+	padding: 0;
+}
+
+.gdoc-hint.danger {
+	border-left-color: #d50000;
+	background-color: #fdf2f2;
+	color: #343a40;
+	padding: 0;
+}
+
+.gdoc-hint.warning {
+	border-left-color: #d50000;
+	background-color: #fdf2f2;
+	color: #343a40;
+	padding: 0;
+}
+
+.gdoc-hint__title {
+	padding: 0.25rem 1rem;
+	background-color: rgba(134, 142, 150, 0.05);
+	font-weight: bold;
+	color: rgba(52, 58, 64, 0.85);
+}
+
+.gdoc-hint__title i.fa::after {
+	content: attr(title);
+	font-style: normal;
+	padding-left: 1.5rem;
+}
+
+.gdoc-hint__title i.fa {
+	color: black;
+	background-size: auto 90%;
+	background-repeat: no-repeat;
+	filter: invert(30%);
+	margin-left: -5px;
+}
+ 
+
+.gdoc-hint__title .gdoc-icon {
+	width: 1.5rem;
+	height: 1.5rem;
+	margin-left: -5px;
+}
+
+.gdoc-hint__text {
+	padding: 0.25rem 1rem;
+}
+
+.gdoc-hint .gdoc-page__anchor {
+	display: none;
+}
+
+.gdoc-mermaid {
+	font-family: "Liberation Sans", sans-serif;
+}
+
+.gdoc-mermaid > svg {
+	height: 100%;
+	padding: 0.5rem;
+}
+
+.gdoc-props__title, .gdoc-props__default {
+	padding: 0;
+	margin: 0;
+	font-family: "Liberation Mono", monospace;
+}
+
+.gdoc-props__meta {
+	gap: 0.5em;
+	line-height: normal;
+	margin-bottom: 0.25rem;
+}
+
+.gdoc-props__meta:hover .gdoc-page__anchor svg.gdoc-icon {
+	color: var(--control-icons);
+}
+
+.gdoc-props__tag.info {
+	border-color: #e8f4fb;
+	background-color: #f3f9fd;
+}
+
+.gdoc-props__tag.note {
+	border-color: #e8f4fb;
+	background-color: #f3f9fd;
+}
+
+.gdoc-props__tag.ok {
+	border-color: #e5faee;
+	background-color: #f2fdf6;
+}
+
+.gdoc-props__tag.tip {
+	border-color: #e5faee;
+	background-color: #f2fdf6;
+}
+
+.gdoc-props__tag.important {
+	border-color: #fbf5e9;
+	background-color: #fdfaf4;
+}
+
+.gdoc-props__tag.caution {
+	border-color: #f1e6fb;
+	background-color: #f8f2fd;
+}
+
+.gdoc-props__tag.danger {
+	border-color: #fbe6e6;
+	background-color: #fdf2f2;
+}
+
+.gdoc-props__tag.warning {
+	border-color: #fbe6e6;
+	background-color: #fdf2f2;
+}
+
+.gdoc-props__tag {
+	font-size: 0.875rem;
+	font-weight: normal;
+	background-color: #f8f9fa;
+	border: 1px solid #e9ecef;
+	border-radius: 0.15rem;
+	padding: 0.125rem 0.25rem;
+	color: #343a40;
+}
+
+.gdoc-props__default {
+	font-size: 0.875rem;
+}
+
+.gdoc-progress {
+	margin-bottom: 1rem;
+}
+
+.gdoc-progress__label {
+	padding: 0.25rem 0;
+}
+
+.gdoc-progress__label--name {
+	font-weight: bold;
+}
+
+.gdoc-progress__wrap {
+	background-color: var(--accent-color-lite);
+	border-radius: 1em;
+	box-shadow: inset 0 0 0 1px var(--accent-color);
+}
+
+.gdoc-progress__bar {
+	height: 1em;
+	border-radius: 1em;
+	background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.125) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.125) 50%, rgba(255, 255, 255, 0.125) 75%, transparent 75%, transparent);
+	background-size: 2.5em 2.5em;
+	background-color: #205375 !important;
+}
