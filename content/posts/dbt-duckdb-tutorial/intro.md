@@ -42,25 +42,92 @@ For more details on how to set up VSCode devcontainers, please refer to the [off
 
 ### Creating DevContainer
 
-Code is published under this branch [step-1-add-dev-container](https://github.com/ohm-s/dbt-duckdb-sample/tree/step-1-add-dev-container)
+Code is published under this branch [step-1-add-dev-container](https://github.com/ohm-s/dbt_duckdb_sample/tree/step-1-add-dev-container)
 
 To create a devcontainer, we need to create a `.devcontainer` folder in the root of our project. This folder will contain all the configuration files required to set up our devcontainer. We will be using the following files:
 - .devcontainer/devcontainer.json
 - .devcontainer/dbt/Dockerfile
 - .devcontainer/dbt/requirements.txt
+- .vscode/settings.json
 
 
 {{< tabs "devcontainer" >}}
-{{< tab "Devcontainer" >}} 
-{{< ghcode "https://github.com/ohm-s/dbt-duckdb-sample/blob/step-1-add-dev-container/.devcontainer/devcontainer.json" >}} 
+{{< tab "devcontainer.json" >}} 
+<br />Root configuration file for the devcontainer: This defines the docker image to be built and the extensions to be installed in the devcontainer.
+{{< ghcode "https://github.com/ohm-s/dbt_duckdb_sample/blob/step-1-add-dev-container/.devcontainer/devcontainer.json" >}} 
 {{< /tab >}}
 {{< tab "Dockerfile" >}} 
-{{< ghcode "https://github.com/ohm-s/dbt-duckdb-sample/blob/step-1-add-dev-container/.devcontainer/dbt/Dockerfile" >}} 
+<br /> Docker image definition for the devcontainer
+{{< ghcode "https://github.com/ohm-s/dbt_duckdb_sample/blob/step-1-add-dev-container/.devcontainer/dbt/Dockerfile" >}} 
 {{< /tab >}}
 {{< tab "requirements.txt" >}} 
-{{< ghcode "https://github.com/ohm-s/dbt-duckdb-sample/blob/step-1-add-dev-container/.devcontainer/dbt/requirements.txt" >}} 
+<br /> DBT Python libraries 
+{{< ghcode "https://github.com/ohm-s/dbt_duckdb_sample/blob/step-1-add-dev-container/.devcontainer/dbt/requirements.txt" >}} 
+{{< /tab >}}
+{{< tab "settings.json" >}} 
+<br />This is needed to enable sql code auto-formatting to work in the devcontainer.
+{{< ghcode "https://github.com/ohm-s/dbt_duckdb_sample/blob/step-1-add-dev-container/.vscode/settings.json" >}} 
 {{< /tab >}}
 {{< /tabs >}}  
 
-Once we open the project in VSCode, we will be prompted to reopen the project in a devcontainer. This will build the devcontainer and open the project in the container. This will take a few minutes to complete. Once the container is built, we will have a fully functional DBT environment with DuckDB driver installed.
+Once we open the project in VSCode, we will be prompted to reopen the project in a devcontainer. This will build the devcontainer and open the project in the container. This will take a few minutes to complete. Once the container is built, we will have a fully functional DBT environment with all necessary dependencies installed.
 
+### Initializing DBT project
+
+Once the devcontainer is up & running, we can take the next step of creating a new DBT project. We will be using the following command to create a new DBT project
+
+```bash
+dbt init dbt_duckdb_sample
+```
+
+Select 1 when prompted to create a new DBT project to use the DuckDB profile
+
+Then the command will generate the DBT under project structure under the `dbt_duckdb_sample` folder. And it will generate ` /root/.dbt/profiles.yml` which is DBT (connection profile)[https://docs.getdbt.com/docs/core/connect-data-platform/connection-profiles]
+
+We will copy this file to our project root and track in it in git as part of our project. 
+
+```bash
+mkdir profiles
+mkdir storage
+cp  /root/.dbt/profiles.yml profiles/
+```
+
+Then we modify the `profiles.yml` to use relative paths to store the duckdb files under the `storage` folder. 
+While we are at it, we'll add our `.gitignore` file 
+
+{{< tabs "profiles" >}}
+{{< tab "profiles.yml" >}}
+{{< ghcode "https://github.com/ohm-s/dbt_duckdb_sample/blob/step-2-init-dbt-project/profiles/profiles.yml" >}} 
+{{< /tab >}}
+{{< tab ".gitignore" >}}
+{{< ghcode "https://github.com/ohm-s/dbt_duckdb_sample/blob/step-2-init-dbt-project/.gitignore" >}} 
+{{< /tab >}}
+{{< /tabs >}}
+
+
+### Running DBT
+
+Now that we have our DBT project initialized, we can start running DBT commands. We will start by running the following command to check if our DBT project is set up correctly.
+
+```bash
+bash-4.2# cd dbt_duckdb_sample
+bash-4.2# pwd
+/root/dbt_duckdb_sample/dbt_duckdb_sample
+bash-4.2# dbt run --profiles-dir ../profiles/
+19:27:59  Running with dbt=1.7.0
+19:27:59  Registered adapter: duckdb=1.7.0
+19:27:59  Found 2 models, 4 tests, 0 sources, 0 exposures, 0 metrics, 391 macros, 0 groups, 0 semantic models
+19:27:59  
+19:27:59  Concurrency: 1 threads (target='dev')
+19:27:59  
+19:27:59  1 of 2 START sql table model main.my_first_dbt_model ........................... [RUN]
+19:28:00  1 of 2 OK created sql table model main.my_first_dbt_model ...................... [OK in 0.13s]
+19:28:00  2 of 2 START sql view model main.my_second_dbt_model ........................... [RUN]
+19:28:00  2 of 2 OK created sql view model main.my_second_dbt_model ...................... [OK in 0.08s]
+19:28:00  
+19:28:00  Finished running 1 table model, 1 view model in 0 hours 0 minutes and 0.40 seconds (0.40s).
+19:28:00  
+19:28:00  Completed successfully
+19:28:00  
+19:28:00  Done. PASS=2 WARN=0 ERROR=0 SKIP=0 TOTAL=2
+```
