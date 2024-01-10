@@ -1,7 +1,7 @@
 {{ $file := .Get 0 }}
 {{ $fileParts := split $file "/blob/" }}
 
-{{ $rawFile := printf "%s/%s" (replace (index $fileParts 0) "https://github.com" "https://raw.githubusercontent.com") (index $fileParts 1)  }}
+{{ $rawFile := printf "%s/%s?t=%d" (replace (index $fileParts 0) "https://github.com" "https://raw.githubusercontent.com") (index $fileParts 1) time.Now.Unix }}
 {{ with resources.GetRemote $rawFile }}
   {{ with .Err }}
     {{ errorf "%s" . }}
@@ -14,7 +14,7 @@
       {{ end }}
     {{ end }}    
     {{ highlight .Content $lang }}
-    {{ partial "anchor_ghcode" (dict "url" $file) }}
+    {{ partial "anchor_ghcode" (dict "url" $file) }}    
   {{ end }}
 {{ else }}
   {{ errorf $rawFile}}

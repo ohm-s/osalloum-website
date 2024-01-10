@@ -104,16 +104,17 @@ While we are at it, we'll add our `.gitignore` file
 {{< /tab >}}
 {{< /tabs >}}
 
-
 ### Running DBT
 
-Now that we have our DBT project initialized, we can start running DBT commands. We will start by running the following command to check if our DBT project is set up correctly.
+Now that we have our DBT project initialized, we can start running DBT commands. 
+We can open a new terminal in VSCode which would be connected to the container bash shell.
+
+
+{{< embed-img "images/dbt-duckdb-tutorial/vscode-terminal-validation.png" "How VSCode terminal looks like" >}}
+
 
 ```bash
-bash-4.2# cd dbt_duckdb_sample
-bash-4.2# pwd
-/root/dbt_duckdb_sample/dbt_duckdb_sample
-bash-4.2# dbt run --profiles-dir ../profiles/
+bash-4.2# dbt run --project-dir dbt_duckdb_sample --profiles-dir profiles
 19:27:59  Running with dbt=1.7.0
 19:27:59  Registered adapter: duckdb=1.7.0
 19:27:59  Found 2 models, 4 tests, 0 sources, 0 exposures, 0 metrics, 391 macros, 0 groups, 0 semantic models

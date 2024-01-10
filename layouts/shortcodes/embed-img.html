@@ -1,0 +1,7 @@
+{{ $file := .Get 0 }}
+{{ $alt := .Get 1 }}
+{{ with resources.Get $file }}  
+    {{ with .Resize "800x" }}
+        <img src="data:image/png;base64,{{ .Content | base64Encode }}" width="{{ .Width }}" alt="{{ $alt }}">
+    {{ end }}
+{{ end }}
