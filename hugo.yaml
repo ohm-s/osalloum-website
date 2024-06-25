@@ -1,6 +1,6 @@
 baseURL: https://blog.306.dev
 languageCode: en-us
-title: 306.dev
+title: blog
 theme: ["hugo-PaperMod"]
 
 outputs:
