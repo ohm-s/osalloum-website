@@ -9,7 +9,7 @@ outputs:
 
 params:
   env: production 
-  description: "306.dev blog"
+  description: "a blog"
   author: Omar
   keywords: [Blog, AWS, Javascript, Java, Python, Data Engineering, Cloud Computing, Serverless]
   defaultTheme: dark
